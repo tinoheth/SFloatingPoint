@@ -180,8 +180,20 @@ print(x, y, z as Any, yy, zz as Any, separator: "\n")
 print(z == 1)
 
 let a = -25 as SFloat
-let f: Float = -a.value
+let f: Float = .nan
 
 a.squareRoot()
 
 a < 4
+
+infix operator ???
+public func ???<T: FloatingPoint>(lhs: T, rhs: T) -> T {
+	if lhs.isNaN {
+		return rhs
+	} else {
+		return lhs
+	}
+}
+
+
+print(f ??? 5)
